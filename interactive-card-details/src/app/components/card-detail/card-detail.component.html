@@ -1,0 +1,49 @@
+<div class="card__details">
+    <form [formGroup]="cardDetailsForm" (ngSubmit)="onSubmit()">
+        <span class="card__details__cardholder__name">
+            <label for="cardholderName"> CARDHOLDER NAME </label> <br/>
+            <input id="cardholderName" 
+                   type="text" 
+                   formControlName="cardholderName"
+                   placeholder="Felicia Leire"
+                   > <br/>
+            <ng-container>
+                <label *ngIf="cardDetailsForm.touched && cardDetailsForm.get('cardholderName')?.status" class="card__details__error"> Can't be blank </label> <br/>
+                <label *ngIf="invalidCardholderName" class="card__details__error"> The name format its not valid</label>
+            </ng-container>
+        </span>
+        <span class="card__details__card__number">
+            <label for="cardNumber"> CARD NUMBER </label> <br/>
+            <input id="cardNumber"
+                   formControlName="cardNumber"
+                   type="text"
+                   placeholder="XXXX XXXX XXXX XXXX">  <br/>
+            <label hidden class="card__details__error" > Wrong format, numbers only </label> <br/>   
+        </span> 
+        <div class="card__details__back__details">
+            <span class="card__details__back__details__date">
+                <label> EXP. DATE (MM/YY) </label> <br/>
+                <div class="card__details__back__details__date__input">
+                    <input  type="text"
+                            id="expireMonth"
+                            formControlName="expireMonth"
+                            placeholder="MM"> <br/>
+                    <input  type="text"
+                            id="expireYear"
+                            formControlName="expireYear"
+                            placeholder="YY"> 
+                </div> <br/>
+                <label hidden class="card__details__error" > Wrong format, numbers only </label> <br/>   
+            </span>
+            <span class="card__details__back__details__cvc">
+                <label> CVC </label> <br/>
+                <input  type="text"
+                        id="cvc"
+                        formControlName="cvc"
+                        placeholder="e.g. 123"> 
+                <label hidden class="card__details__error" > Wrong format, numbers only </label> <br/>   
+            </span> 
+        </div>
+        <button class="card__details__confirm__button" type="submit"> Confirm </button>
+    </form>
+</div>
